@@ -44,8 +44,8 @@ sudo apt update && sudo apt install -y curl tar awk sed
 ### 2. Clone & Setup
 
 ```bash
-git clone [https://github.com/](https://github.com/)<your-username>/<your-repo-name>.git
-cd <your-repo-name>
+git clone https://github.com/Thiyansa/Ultra-Lightweight-Tor-Proxy.git
+cd Ultra-Lightweight-Tor-Proxy
 
 ```
 
