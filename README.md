@@ -93,3 +93,16 @@ curl --socks5-hostname <HOST_IP>:3191 [https://check.torproject.org/api/ip](http
 ## ⚠️ Disclaimer
 
 This script is intended for research, testing, and privacy maintenance in low-resource environments. Ensure you comply with your local network policies and hosting terms of service when exposing SOCKS5 ports publicly.
+
+---
+
+<div align="center">
+
+## Developed by
+
+### **Thiyansa**
+
+Built for the open-source community.
+
+</div>
+
