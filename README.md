@@ -1,8 +1,9 @@
+
 # 🧅 Ultra-Low Resource Tor SOCKS5 Proxy
 
 A fully automated, ultra-lightweight bash runner for Tor designed to consume minimal CPU (1%–3%) and RAM (~15MB–20MB). It automatically handles downloading, dynamic `torrc` configuration, disk usage monitoring, and automated background cleanup.
 
-The proxy is configured to expose SOCKS5 across all interfaces on port **`0.0.0.0:port`**.
+The proxy is configured to expose SOCKS5 across all interfaces on port **`0.0.0.0:3191`**.
 
 ---
 
@@ -15,7 +16,7 @@ The proxy is configured to expose SOCKS5 across all interfaces on port **`0.0.0.
   - Deletes logs larger than 1MB hourly.
   - Automatically sweeps `.tmp` cache and cached descriptors.
   - Aggressive emergency cleanup if disk usage exceeds 80–85%.
-- **Direct SOCKS5 Binding:** Exposes port `port` directly on `0.0.0.0`.
+- **Direct SOCKS5 Binding:** Exposes port `3191` directly on `0.0.0.0`.
 
 ---
 
@@ -23,7 +24,7 @@ The proxy is configured to expose SOCKS5 across all interfaces on port **`0.0.0.
 
 | Setting | Value | Description |
 | :--- | :--- | :--- |
-| **SOCKS Port** | `0.0.0.0:port` | Listens for incoming SOCKS5 connections on all interfaces |
+| **SOCKS Port** | `0.0.0.0:3191` | Listens for incoming SOCKS5 connections on all interfaces |
 | **Data Directory** | `./tor-data` | Stores Tor state and descriptor caches |
 | **Max Memory In Queues** | `8 MB` | Strict memory queuing limit |
 | **Circuit Lifetime** | `10s` | Quick circuit dirtiness turnover (`MaxCircuitDirtiness 10`) |
@@ -37,3 +38,58 @@ The proxy is configured to expose SOCKS5 across all interfaces on port **`0.0.0.
 Ensure the following basic CLI utilities are installed on your Linux system:
 ```bash
 sudo apt update && sudo apt install -y curl tar awk sed
+
+```
+
+### 2. Clone & Setup
+
+```bash
+git clone [https://github.com/](https://github.com/)<your-username>/<your-repo-name>.git
+cd <your-repo-name>
+
+```
+
+### 3. Make Executable & Run
+
+```bash
+chmod +x start-tor.sh
+./start-tor.sh
+
+```
+
+---
+
+## 🧪 Testing the Proxy
+
+Once started, test your SOCKS5 connection using `curl`:
+
+```bash
+curl --socks5-hostname 127.0.0.1:3191 [https://check.torproject.org/api/ip](https://check.torproject.org/api/ip)
+
+```
+
+If connecting from an external server/client on the same network:
+
+```bash
+curl --socks5-hostname <HOST_IP>:3191 [https://check.torproject.org/api/ip](https://check.torproject.org/api/ip)
+
+```
+
+---
+
+## 📂 Project Structure
+
+```text
+.
+├── start-tor.sh       # Main launcher script (downloads, cleans & runs Tor)
+├── torrc              # Auto-generated runtime Tor configuration
+├── tor/               # Downloaded Tor expert binary directory
+└── tor-data/          # Runtime state, keys, and cache
+
+```
+
+---
+
+## ⚠️ Disclaimer
+
+This script is intended for research, testing, and privacy maintenance in low-resource environments. Ensure you comply with your local network policies and hosting terms of service when exposing SOCKS5 ports publicly.
