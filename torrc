@@ -1,7 +1,10 @@
+# --- SocksPort (Listening on 0.0.0.0:3191) ---
 SOCKSPort 0.0.0.0:3191
+
+# --- Data Directory ---
 DataDirectory ./tor-data
 
-# --- Memory (RAM) අවම කිරීම (~20MB) ---
+# --- Memory (RAM) අවම කිරීම (~15-20MB) ---
 ClientOnly 1
 MaxMemInQueues 8 MB
 AvoidDiskWrites 1
@@ -9,16 +12,16 @@ NumEntryGuards 1
 UseEntryGuards 0
 
 # --- CPU භාවිතය 1%-3% දක්වා අවම කිරීම ---
-# අනවශ්‍ය Background Circuit හදන එක නවත්වයි
 MaxClientCircuitsPending 1
 CircuitStreamTimeout 60
 CircuitBuildTimeout 60
 LearnCircuitBuildTimeout 0
 
-# Console Logs සහ Disk I/O අඩු කිරීම
+# --- Console Logs සහ Disk I/O අඩු කිරීම ---
 Log notice stdout
 SafeLogging 1
 
-# Idle කාලයේදී connections සහ data updates අවම කිරීම
+# --- Idle කාලයේදී connections සහ data updates අවම කිරීම ---
 KeepalivePeriod 600
 ClientRejectInternalAddresses 1
+MaxCircuitDirtiness 10
